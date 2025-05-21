@@ -1,0 +1,38 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Dashboards",
+      "icon": "menu-icon tf-icons ri-home-smile-line",
+      "slug": "dashboard-analytics",
+      "badge": [
+        "danger",
+        "5"
+      ]
+    },
+    {
+      "url": "auth/register-basic",
+      "name": "Register",
+      "icon": "menu-icon tf-icons ri-user-shared-2-line",
+      "slug": "auth-register-basic"
+    },
+    {
+      "url": "auth/appointment-basic",
+      "name": "Appointment",
+      "icon": "menu-icon tf-icons ri-shake-hands-line",
+      "slug": "auth-appointment-basic"
+    },
+    {
+      "url": "auth/diagnosis-basic",
+      "name": "Patient Diagnosis",
+      "icon": "menu-icon tf-icons ri-capsule-line",
+      "slug": "auth-diagnosis-basic"
+    },
+    {
+      "url": "auth/record-basic",
+      "name": "Medical Records",
+      "icon": "menu-icon tf-icons ri-folder-history-line",
+      "slug": "auth-records-basic"
+    }
+  ]
+}
