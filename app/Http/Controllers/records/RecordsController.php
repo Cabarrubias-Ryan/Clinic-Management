@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\records;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RecordsController extends Controller
 {
     public function index() {
-      return view('content.records.medical-records');
+
+      $appointments = Patient::whereNull('patients.deleted_at')
+          ->orderBy('patients.created_at  ', 'DESC')
+          ->get();
+
+      return view('content.records.medical-records', compact('appointments'));
     }
 }

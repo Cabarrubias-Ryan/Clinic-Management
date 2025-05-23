@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\View;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
@@ -22,10 +23,20 @@ class MenuServiceProvider extends ServiceProvider
    */
   public function boot(): void
   {
-    $verticalMenuJson = file_get_contents(base_path('resources/menu/verticalMenu.json'));
-    $verticalMenuData = json_decode($verticalMenuJson);
+    $AdminMenuJson = file_get_contents(base_path('resources/menu/verticalMenu.json'));
+    $DoctorMenuJson = file_get_contents(base_path('resources/menu/verticalMenuDoctor.json'));
 
-    // Share all menuData to all the views
-    $this->app->make('view')->share('menuData', [$verticalMenuData]);
+    $Admin = json_decode($AdminMenuJson);
+    $doctor = json_decode($DoctorMenuJson);
+
+    View::composer('*', function ($view) use ($doctor, $Admin) {
+        $user = Auth::user();
+
+        if ($user && $user->role === 'Doctor') {
+            $view->with('menuData', [$doctor]);
+        } else {
+            $view->with('menuData', [$Admin]);
+        }
+    });
   }
 }
