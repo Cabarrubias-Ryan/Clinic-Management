@@ -64,7 +64,7 @@ $(document).ready(function () {
             <span>${appointment.patient_address}</span> <br>
           </td>
           <td>
-            <a href="">View</a>
+            <a href="/auth/record-basic/${appointment.id}">View</a>
           </td>
         </tr>
       `;

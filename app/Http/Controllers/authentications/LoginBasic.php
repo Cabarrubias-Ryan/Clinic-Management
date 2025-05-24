@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\authentications;
 
+use Throwable;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginBasic extends Controller
 {
@@ -34,5 +36,27 @@ class LoginBasic extends Controller
     $request->session()->regenerateToken();
 
     return redirect()->route('login');
+  }
+  public function redirect($provider)
+  {
+      return Socialite::driver($provider)->redirect();
+  }
+  public function callback($provider)
+  {
+    try {
+        $user = Socialite::driver($provider)->stateless()->user();
+    } catch (Throwable $e) {
+      return redirect('/login')->with('error', 'Authentication failed.');
+    }
+
+    $existingUser = User::where('email', $user->getEmail())->first();
+
+    if ($existingUser) {
+        Auth::login($existingUser);
+        return redirect()->route('dashboard-analytics');
+    } else {
+      return redirect('/')->with('error', 'Invalid Login!!! This Emmail didnt register.'); //
+    }
+
   }
 }

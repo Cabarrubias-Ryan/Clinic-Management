@@ -61,12 +61,14 @@
             </div>
           </form>
 
-          <p class="text-center mb-5">
-            <span>New on our platform?</span>
-            <a href="{{url('auth/register-basic')}}">
-              <span>Create an account</span>
-            </a>
-          </p>
+          <div class="text-center mt-3">
+            <span>Or Sign with</span>
+          </div>
+          <div class="d-flex justify-content-center mt-3 gap-3">
+              <a href="{{ route('auth.provider.redirect', 'google')}}" class="btn btn-primary border rounded-circle d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
+                <i class="ri-google-line"></i>
+              </a>
+          </div>
         </div>
       </div>
       <!-- /Login -->
@@ -76,4 +78,17 @@
     </div>
   </div>
 </div>
+<script>
+    @if(session('error'))
+        Toastify({
+            text: "{{ session('error') }}", // Get success message
+            duration: 3000,  // Duration in milliseconds
+            close: true,     // Show a close button
+            gravity: "top",  // Toast will appear at the top
+            position: "right",  // Position on the right
+            backgroundColor: "green",  // Background color for success
+            stopOnFocus: true
+        }).showToast();
+    @endif
+</script>
 @endsection

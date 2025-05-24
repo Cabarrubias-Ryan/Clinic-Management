@@ -35,7 +35,7 @@
 @php
 $appointments = collect($appointments)->map(function($appointment) {
     return [
-        'id' => $appointment->id,
+        'id' => $appointment->patient_id,
         'created_at' => $appointment->created_at,
         'updated_at' => $appointment->updated_at,
         'deleted_at' => $appointment->deleted_at,

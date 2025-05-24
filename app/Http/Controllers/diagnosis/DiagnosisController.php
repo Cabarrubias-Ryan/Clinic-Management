@@ -87,4 +87,12 @@ class DiagnosisController extends Controller
 
       return view('content.diagnosis.patient-diagnosis-cancel', compact('appointments'));
     }
+    public function cancelAppointment($id) {
+      $appointments = Appointment::where('appointment_id', $id)->update([
+          'appointment_status' => 'Cancelled',
+          'notes' => 'Cancelled',
+      ]);
+
+      return redirect()->back()->with('success', 'Appointment cancelled successfully.'); //
+    }
 }

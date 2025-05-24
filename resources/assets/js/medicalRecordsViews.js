@@ -43,19 +43,6 @@ function validateForm(fields) {
   return valid;
 }
 
-// for editing
-$(document).ready(function () {
-  $('body').on('click', '.Edit', function () {
-    const doctor = $(this).data('doctor_id');
-    const patient = $(this).data('patient_id');
-    const appointment_id = $(this).data('appointment_id');
-
-    $('#doctor_id').val(doctor);
-    $('#patient_id').val(patient);
-    $('#appointment_id').val(appointment_id);
-  });
-});
-
 // search
 $(document).ready(function () {
   function displayAppointments(appointments) {
@@ -73,28 +60,12 @@ $(document).ready(function () {
           <td><span>${appointment.patient_first_name} ${appointment.patient_last_name}</span></td>
           <td>${appointment.patient_email}</td>
           <td>${appointment.patient_phone_number}</td>
-          <td>${appointment.appointment_date}</td>
-          <td>${appointment.appointment_status}</td>
           <td>
-            <span>${appointment.doctor_firstname} ${appointment.doctor_lastname}</span> <br>
-            <span class="text-muted">${appointment.doctor_email}</span>
+            <span>${appointment.patient_address}</span> <br>
           </td>
-          <td>
-            <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="ri-more-2-line"></i></button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item Edit" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#AddDiagnosis"
-                  data-doctor_id="${appointment.doctor_id}"
-                  data-patient_id="${appointment.patient_id}"
-                  data-appointment_id="${appointment.appointment_id}">
-                  <i class="ri-pencil-line me-1" data></i> Diagnos
-                </a>
-                <a class="dropdown-item DeleteBtn" href="/auth/diagnosis-basic/cancel/${appointment.appointment_id}">
-                  <i class="ri-close-circle-line me-1"></i> Cancel
-                </a>
-              </div>
-            </div>
-          </td>
+           <td>${appointment.diagnosis}</td>
+           <td>${appointment.treatment}</td>
+           <td>${appointment.record_date}</td>
         </tr>
       `;
       $appointmentList.append(appointmentRow);
@@ -104,12 +75,7 @@ $(document).ready(function () {
   function filterAppointments(query) {
     const filtered = window.appointments.filter(appointment => {
       const patientFullName = `${appointment.patient_first_name} ${appointment.patient_last_name}`.toLowerCase();
-      const doctorFullName = `${appointment.doctor_firstname} ${appointment.doctor_lastname}`.toLowerCase();
-      return (
-        patientFullName.includes(query) ||
-        doctorFullName.includes(query) ||
-        appointment.appointment_status.toLowerCase().includes(query)
-      );
+      return patientFullName.includes(query);
     });
     displayAppointments(filtered);
   }

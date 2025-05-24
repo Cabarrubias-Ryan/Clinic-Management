@@ -57,6 +57,23 @@ $(document).ready(function () {
       { id: 'doctor_id', label: 'Doctor' }
     ];
 
+    const date = $('#appointment').val();
+    const appointment_date = new Date(date);
+    const now = Date.now();
+
+    if (appointment_date < now) {
+      Toastify({
+        text: "Oops! You can't travel back in time — pick future dates!",
+        duration: 3000,
+        close: true,
+        gravity: 'top', // top or bottom
+        position: 'right', // left, center or right
+        backgroundColor: '#cc3300',
+        stopOnFocus: true
+      }).showToast();
+      event.preventDefault();
+      return;
+    }
     const isValid = validateForm(fields);
 
     if (!isValid) {

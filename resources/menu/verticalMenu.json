@@ -1,7 +1,7 @@
 {
   "menu": [
     {
-      "url": "/auth/register-basic",
+      "url": "/auth/dashboard-analytics",
       "name": "Dashboards",
       "icon": "menu-icon tf-icons ri-home-smile-line",
       "slug": "dashboard-analytics",
