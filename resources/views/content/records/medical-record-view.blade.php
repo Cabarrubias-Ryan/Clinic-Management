@@ -7,13 +7,6 @@
 @endsection
 
 @section('content')
- <nav aria-label="breadcrumb" class="mt-5">
-    <ol class="breadcrumb breadcrumb-style2">
-      <li class="breadcrumb-item">
-        <a href="/auth/record-basic"><i class="ri-arrow-left-s-line"></i> Back</a>
-      </li>
-    </ol>
-  </nav>
 <div class="card">
   <header class="mb-3 navbar-nav-right d-flex align-items-center px-3 mt-3">
     <div class="navbar-nav align-items-start">
@@ -21,6 +14,10 @@
         <i class="ri-search-line ri-22px me-1_5"></i>
         <input type="search" id="search" class="form-control border-0 shadow-none ps-1 ps-sm-2 ms-50" placeholder="Search..." aria-label="Search...">
       </div>
+    </div>
+     <div class="navbar-nav align-items-end ms-auto">
+      <div class="nav-item d-flex align-items-center">
+        <a class="btn btn-primary" href="{{ route('record-basic-pdf')}}" target="_blank">Download PFD</a>
     </div>
   </header>
   <div class="table-responsive text-nowrap overflow-auto" style="max-height: 500px;">

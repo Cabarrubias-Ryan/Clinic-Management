@@ -32,7 +32,7 @@
       "url": "auth/record-basic",
       "name": "Medical Records",
       "icon": "menu-icon tf-icons ri-folder-history-line",
-      "slug": "auth-records-basic"
+      "slug": "auth-records-basic-view"
     }
   ]
 }

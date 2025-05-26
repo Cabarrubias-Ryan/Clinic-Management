@@ -33,8 +33,8 @@ Route::post('/auth/appointment-basic/add', [AppointmentController::class, 'store
 Route::post('/auth/appointment-basic/update', [AppointmentController::class, 'update'])->name('auth-appointment-basic-update');
 Route::post('/auth/appointment-basic/delete', [AppointmentController::class, 'delete'])->name('auth-appointment-basic-delete');
 
-Route::get('/auth/record-basic', [RecordsController::class, 'index'])->name('auth-records-basic');
-Route::get('/auth/record-basic/{id}', [RecordsController::class, 'show'])->name('auth-records-basic-view');
+Route::get('/auth/record-basic', [RecordsController::class, 'show'])->name('auth-records-basic-view');
+Route::get('/auth/record-basic/pdf', [RecordsController::class, 'generateReceipt'])->name('record-basic-pdf');
 
 Route::get('/auth/diagnosis-basic', [DiagnosisController::class, 'index'])->name('auth-diagnosis-basic');
 Route::get('/auth/diagnosis-basic/cancel/{id}', [DiagnosisController::class, 'cancelAppointment'])->name('auth-diagnosis-basic-cancel');
